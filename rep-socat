@@ -2,18 +2,18 @@
 
 # iptables -I INPUT 3 -p tcp -m tcp --dport 12345 -j ACCEPT
 #
-# socat tcp-listen:12345,fork,bind=192.168.3.254 EXEC:"tee socat.log"
+# socat tcp-listen:12345,fork,bind=127.0.0.1 EXEC:"tee socat.log"
 #
 # socat udp-listen:12345,fork EXEC:cat
-# socat - udp:192.168.1.55:12345
+# socat - udp:127.0.0.1:12345
 #
-# for x in `seq 2 253`; do sudo ifconfig eth0:$x 192.168.3.$x up; done
+# for x in `seq 2 253`; do sudo ifconfig eth0:$x 127.0.0.1$x up; done
 # for x in `seq 2 253`; do sudo ifconfig eth0:$x down; done
 # ip addr show eth0
 #
 
-remote=192.168.1.55:12345
-bindpfx=192.168.3.
+remote=127.0.0.1:12345
+bindpfx=127.0.0.1
 
 endn=252
 if [ $# -gt 0 ]; then

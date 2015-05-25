@@ -2,13 +2,15 @@
 
 # export MY_PHONE=13511112222
 # export MY_PASS=xxxyyy
-# export MY_HOST=192.168.1.55:8888
+# export MY_HOST=127.0.0.1:8888
 #
 # ./test.sh post http://127.0.0.1:9991/test_json '{"phone":13511112222,"send":true,"words":"hello world", "res":["a","b","c"]}'
 
+_HOST=127.0.0.1
+
 [ -n "$MY_PHONE" ] || MY_PHONE=13511112222
 [ -n "$MY_PASS" ] || MY_PASS=13511112222
-[ -n "$MY_HOST" ] || MY_HOST=192.168.1.55:8899
+[ -n "$MY_HOST" ] || MY_HOST=$_HOST:8899
 
 GP="--$1"
 path="$2"
@@ -28,5 +30,5 @@ curl -A cURL -c /tmp/$USER.cj -b /tmp/$USER.cj $GP http://$MY_HOST$path --data-b
 # curl -A cURL -c /tmp/$USER.cj -b /tmp/$USER.cj http://127.0.0.1:9990/test_json \
 #     --data-binary '{"phone":13511112222,"send":true,"words":"hello world", "res":["a.wav","b.jpg","c.png"]}'
 
-# http://192.168.1.55:8989/register?phone=13511112222&password=13511112222&name=woodoo&sex=1&code=343287&fr=cURL
+# http://$_HOST:8989/register?phone=13511112222&password=13511112222&name=woodoo&sex=1&code=343287&fr=cURL
 
